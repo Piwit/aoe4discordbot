@@ -1,0 +1,25 @@
+{
+  "name": "aoe4discordbot",
+  "version": "1.0.0",
+  "description": "Discord bot for AoE 4, select a map and a civilization for you and your friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Piwit/aoe4discordbot.git"
+  },
+  "author": "Lucas Marie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Piwit/aoe4discordbot/issues"
+  },
+  "homepage": "https://github.com/Piwit/aoe4discordbot#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.11.0",
+    "@discordjs/rest": "^0.2.0-canary.0",
+    "discord-api-types": "^0.26.1",
+    "discord.js": "^13.6.0"
+  }
+}
