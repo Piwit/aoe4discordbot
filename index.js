@@ -4,7 +4,12 @@ const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
 
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [
+	Intents.FLAGS.GUILDS,
+	Intents.FLAGS.GUILD_MEMBERS,
+	Intents.FLAGS.GUILD_PRESENCES,
+	Intents.FLAGS.GUILD_VOICE_STATES
+] });
 client.commands = new Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -32,7 +37,7 @@ client.on('interactionCreate', async interaction => {
 		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
-		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		await interaction.reply({ content: "Une attaque de l'IA a flingué mes péons, 5min le temps que je me remette sur pied", ephemeral: true });
 	}
 });
 

@@ -5,6 +5,7 @@ const { getRandomNumber } = require('../utils.js');
 
 const WALL = "WALL";
 const WATER = "WATER";
+const TEAM = ["Equipes ensemble", "Emplacement aléatoire"];
 
 const randomMap = (interaction) => {
   const wall = interaction.options.getBoolean('wall');
@@ -14,7 +15,8 @@ const randomMap = (interaction) => {
   );
   const selectedMap = filteredMaps[getRandomNumber(filteredMaps.length)];
   const selectedBiome = biomes[getRandomNumber(biomes.length)];
-  interaction.reply(`Map: ${selectedMap.name}\nBiome: ${selectedBiome}`);
+  const selectedTeam = TEAM[getRandomNumber(TEAM.length)];
+  interaction.reply(`Map: ${selectedMap.name}\nBiome: ${selectedBiome}\n${selectedTeam}`);
 }
 
 

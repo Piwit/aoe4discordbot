@@ -22,18 +22,28 @@ const civForBadGuys = (numberOfPlayers, civilizations) => {
 
 async function randomCivForAll (interaction) {
   const civilizations = [];
+  const promises = [];
   // Fetch all voice channels, maybe add a channel option to target a channel
   await interaction.guild.channels.fetch().then(
     (channels) => {
       channels.forEach((channel) => {
         if (channel.isVoice()) {
-          channel.members.forEach((member) => randomCiv(member.id, civilizations, true))
+          promises.push(
+            channel.members.forEach((member) => {
+              randomCiv(member.id, civilizations, true)
+            })
+          )
         }
       })
     }
   )
-  civForBadGuys(civilizations.length, civilizations);
-  interaction.reply(civilizations.join('\n'))
+  Promise.all(promises).then((_) => {
+    civForBadGuys(civilizations.length, civilizations);
+    if (civilizations.length > 0)
+      interaction.reply(civilizations.join('\n'))
+    else
+      interaction.reply('Les joueurs doivent être dans un channel audio pour tirer au sort les civilisations')
+  });
 }
 
 module.exports = {
